@@ -1,9 +1,15 @@
-
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Play, Star } from "lucide-react";
 
 export const Hero = () => {
+  const handleWatchDemo = () => {
+    const demoSection = document.getElementById('demo-section');
+    if (demoSection) {
+      demoSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -27,7 +33,7 @@ export const Hero = () => {
               Start Your Style Journey
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-3">
+            <Button variant="outline" size="lg" className="text-lg px-8 py-3" onClick={handleWatchDemo}>
               <Play className="mr-2 h-5 w-5" />
               Watch Demo
             </Button>
@@ -47,7 +53,7 @@ export const Hero = () => {
           </div>
         </div>
         
-        <div className="mt-16 relative">
+        <div id="demo-section" className="mt-16 relative">
           <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-600/20 rounded-3xl blur-3xl"></div>
           <div className="relative bg-card rounded-3xl p-8 border shadow-2xl">
             <div className="aspect-video bg-gradient-to-br from-primary/10 to-purple-600/10 rounded-2xl flex items-center justify-center">
