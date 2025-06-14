@@ -8,8 +8,8 @@ export const CTA = () => {
     <section className="py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto text-center">
         <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-pink-500/20 to-purple-600/20 rounded-3xl blur-3xl"></div>
-          <div className="relative bg-card rounded-3xl p-12 border shadow-xl">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-indigo-500/10 to-blue-600/10 rounded-3xl blur-3xl"></div>
+          <div className="relative bg-white/80 backdrop-blur-sm dark:bg-gray-900/80 rounded-3xl p-12 border border-white/30 dark:border-gray-800/30 shadow-xl">
             <Badge variant="secondary" className="mb-6">
               <Sparkles className="w-4 h-4 mr-2" />
               Ready to Transform Your Style?
