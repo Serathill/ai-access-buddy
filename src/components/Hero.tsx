@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Play, Star } from "lucide-react";
@@ -54,11 +55,11 @@ export const Hero = () => {
         </div>
         
         <div id="demo-section" className="mt-16 relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-600/20 rounded-3xl blur-3xl"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-pink-500/20 to-purple-600/20 rounded-3xl blur-3xl"></div>
           <div className="relative bg-card rounded-3xl p-8 border shadow-2xl">
-            <div className="aspect-video bg-gradient-to-br from-primary/10 to-purple-600/10 rounded-2xl flex items-center justify-center">
+            <div className="aspect-video bg-gradient-to-br from-primary/10 via-pink-500/10 to-purple-600/10 rounded-2xl flex items-center justify-center">
               <div className="text-center">
-                <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-20 h-20 bg-gradient-to-br from-primary/30 to-pink-500/30 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Play className="h-8 w-8 text-primary" />
                 </div>
                 <p className="text-lg font-medium">Interactive Style Demo</p>
