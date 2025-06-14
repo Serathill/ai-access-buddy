@@ -11,6 +11,14 @@ export const Navbar = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,10 +29,10 @@ export const Navbar = () => {
           </Link>
           
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#features" className="text-foreground/80 hover:text-foreground transition-colors">Features</a>
-            <a href="#how-it-works" className="text-foreground/80 hover:text-foreground transition-colors">How it Works</a>
-            <a href="#pricing" className="text-foreground/80 hover:text-foreground transition-colors">Pricing</a>
-            <a href="#faq" className="text-foreground/80 hover:text-foreground transition-colors">FAQ</a>
+            <a href="#features" className="text-foreground/80 hover:text-foreground transition-colors" onClick={(e) => handleNavClick(e, 'features')}>Features</a>
+            <a href="#how-it-works" className="text-foreground/80 hover:text-foreground transition-colors" onClick={(e) => handleNavClick(e, 'how-it-works')}>How it Works</a>
+            <a href="#pricing" className="text-foreground/80 hover:text-foreground transition-colors" onClick={(e) => handleNavClick(e, 'pricing')}>Pricing</a>
+            <a href="#faq" className="text-foreground/80 hover:text-foreground transition-colors" onClick={(e) => handleNavClick(e, 'faq')}>FAQ</a>
             <Button variant="outline" size="sm">Sign In</Button>
             <Button size="sm">Get Started</Button>
           </div>
@@ -42,10 +50,10 @@ export const Navbar = () => {
 
         {isOpen && (
           <div className="md:hidden py-4 space-y-4">
-            <a href="#features" className="block text-foreground/80 hover:text-foreground transition-colors">Features</a>
-            <a href="#how-it-works" className="block text-foreground/80 hover:text-foreground transition-colors">How it Works</a>
-            <a href="#pricing" className="block text-foreground/80 hover:text-foreground transition-colors">Pricing</a>
-            <a href="#faq" className="block text-foreground/80 hover:text-foreground transition-colors">FAQ</a>
+            <a href="#features" className="block text-foreground/80 hover:text-foreground transition-colors" onClick={(e) => handleNavClick(e, 'features')}>Features</a>
+            <a href="#how-it-works" className="block text-foreground/80 hover:text-foreground transition-colors" onClick={(e) => handleNavClick(e, 'how-it-works')}>How it Works</a>
+            <a href="#pricing" className="block text-foreground/80 hover:text-foreground transition-colors" onClick={(e) => handleNavClick(e, 'pricing')}>Pricing</a>
+            <a href="#faq" className="block text-foreground/80 hover:text-foreground transition-colors" onClick={(e) => handleNavClick(e, 'faq')}>FAQ</a>
             <div className="flex flex-col space-y-2 pt-4">
               <Button variant="outline" size="sm">Sign In</Button>
               <Button size="sm">Get Started</Button>
