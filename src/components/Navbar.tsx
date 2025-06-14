@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,10 +11,10 @@ export const Navbar = () => {
     <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
             <Sparkles className="h-8 w-8 text-primary" />
             <span className="text-xl font-bold">StyleAI</span>
-          </div>
+          </Link>
           
           <div className="hidden md:flex items-center space-x-8">
             <a href="#features" className="text-foreground/80 hover:text-foreground transition-colors">Features</a>
