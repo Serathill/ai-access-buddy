@@ -20,22 +20,22 @@ export const CTA = () => {
             </h2>
             
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Start your free trial today and experience the future of personal styling. 
-              No credit card required, cancel anytime.
+              Start using StyleAI today with our free tier and experience the future of personal styling. 
+              No credit card required, start instantly.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button size="lg" className="text-lg px-8 py-3">
-                Start Your Free Trial
+                Get Started Free
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button variant="outline" size="lg" className="text-lg px-8 py-3">
-                Schedule a Demo
+                Learn More
               </Button>
             </div>
             
             <div className="mt-8 text-sm text-muted-foreground">
-              ✨ 14-day free trial • 🚀 Setup in under 5 minutes • 💳 No credit card required
+              ✨ Free tier available • 🚀 Setup in under 5 minutes • 💳 No credit card required
             </div>
           </div>
         </div>

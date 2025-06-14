@@ -43,7 +43,7 @@ export const Hero = () => {
               <span className="ml-2">4.9/5 from 10,000+ users</span>
             </div>
             <span>•</span>
-            <span>Free trial • No credit card required</span>
+            <span>Free tier available • No credit card required</span>
           </div>
         </div>
         
