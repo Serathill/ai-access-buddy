@@ -11,45 +11,82 @@ import { Navbar } from "@/components/Navbar";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-950 dark:via-blue-950 dark:to-indigo-950">
+    <div className="min-h-screen relative">
+      {/* Unified flowing gradient background */}
+      <div className="fixed inset-0 -z-10">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-blue-50 via-indigo-50 via-slate-50 via-blue-50 via-indigo-50 to-slate-50 dark:from-slate-950 dark:via-blue-950 dark:via-indigo-950 dark:via-slate-950 dark:via-blue-950 dark:via-indigo-950 dark:to-slate-950"></div>
+      </div>
+      
       <Navbar />
+      
       <div className="relative">
-        {/* Hero with enhanced gradient */}
-        <div className="bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-200 dark:from-blue-900 dark:via-indigo-900 dark:to-purple-900">
-          <Hero />
+        {/* Hero section with gradient overlay */}
+        <div className="relative -mb-12">
+          <div className="absolute inset-0 bg-gradient-to-b from-blue-100/80 via-indigo-100/60 to-transparent dark:from-blue-900/80 dark:via-indigo-900/60 dark:to-transparent"></div>
+          <div className="relative z-10">
+            <Hero />
+          </div>
+          {/* Transition overlay */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-indigo-100/40 dark:to-indigo-900/40"></div>
         </div>
         
-        {/* Features with diagonal gradient */}
-        <div className="relative bg-gradient-to-r from-indigo-100 via-slate-50 to-blue-100 dark:from-indigo-900 dark:via-slate-950 dark:to-blue-900">
-          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/20 to-transparent dark:via-black/20"></div>
-          <Features />
+        {/* Features section with seamless transition */}
+        <div className="relative -mb-12">
+          <div className="absolute inset-0 bg-gradient-to-b from-indigo-100/40 via-slate-100/60 to-transparent dark:from-indigo-900/40 dark:via-slate-900/60 dark:to-transparent"></div>
+          <div className="relative z-10 pt-12">
+            <Features />
+          </div>
+          {/* Transition overlay */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-blue-100/40 dark:to-blue-900/40"></div>
         </div>
         
-        {/* How It Works with strong accent */}
-        <div className="bg-gradient-to-l from-blue-100 via-indigo-100 to-slate-100 dark:from-blue-900 dark:via-indigo-900 dark:to-slate-900">
-          <HowItWorks />
+        {/* How It Works section */}
+        <div className="relative -mb-12">
+          <div className="absolute inset-0 bg-gradient-to-b from-blue-100/40 via-indigo-100/60 to-transparent dark:from-blue-900/40 dark:via-indigo-900/60 dark:to-transparent"></div>
+          <div className="relative z-10 pt-12">
+            <HowItWorks />
+          </div>
+          {/* Transition overlay */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-slate-100/40 dark:to-slate-900/40"></div>
         </div>
         
-        {/* Pricing with subtle pattern */}
-        <div className="relative bg-gradient-to-br from-indigo-50 via-slate-50 to-blue-50 dark:from-indigo-950 dark:via-slate-950 dark:to-blue-950">
-          <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_800px_at_100%_200px,rgba(99,102,241,0.3),transparent)]"></div>
-          <Pricing />
+        {/* Pricing section */}
+        <div className="relative -mb-12">
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-100/40 via-indigo-100/60 to-transparent dark:from-slate-900/40 dark:via-indigo-900/60 dark:to-transparent"></div>
+          <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_800px_at_50%_50%,rgba(99,102,241,0.3),transparent)]"></div>
+          <div className="relative z-10 pt-12">
+            <Pricing />
+          </div>
+          {/* Transition overlay */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-blue-100/40 dark:to-blue-900/40"></div>
         </div>
         
-        {/* Testimonials with warm gradient */}
-        <div className="bg-gradient-to-r from-slate-100 via-blue-100 to-indigo-100 dark:from-slate-900 dark:via-blue-900 dark:to-indigo-900">
-          <Testimonials />
+        {/* Testimonials section */}
+        <div className="relative -mb-12">
+          <div className="absolute inset-0 bg-gradient-to-b from-blue-100/40 via-slate-100/60 to-transparent dark:from-blue-900/40 dark:via-slate-900/60 dark:to-transparent"></div>
+          <div className="relative z-10 pt-12">
+            <Testimonials />
+          </div>
+          {/* Transition overlay */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-indigo-100/40 dark:to-indigo-900/40"></div>
         </div>
         
-        {/* FAQ with enhanced muted style */}
-        <div className="relative bg-gradient-to-br from-indigo-100/50 via-slate-100/50 to-blue-100/50 dark:from-indigo-900/50 dark:via-slate-900/50 dark:to-blue-900/50">
-          <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-transparent dark:via-black/10"></div>
-          <FAQ />
+        {/* FAQ section */}
+        <div className="relative -mb-12">
+          <div className="absolute inset-0 bg-gradient-to-b from-indigo-100/40 via-slate-100/60 to-transparent dark:from-indigo-900/40 dark:via-slate-900/60 dark:to-transparent"></div>
+          <div className="relative z-10 pt-12">
+            <FAQ />
+          </div>
+          {/* Transition overlay */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-blue-100/40 dark:to-blue-900/40"></div>
         </div>
         
-        {/* CTA with seamless gradient transition */}
-        <div className="bg-gradient-to-br from-indigo-100/70 via-slate-100/70 to-blue-100/70 dark:from-indigo-900/70 dark:via-slate-900/70 dark:to-blue-900/70">
-          <CTA />
+        {/* CTA section with final gradient */}
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-b from-blue-100/40 via-indigo-100/60 to-slate-100/40 dark:from-blue-900/40 dark:via-indigo-900/60 dark:to-slate-900/40"></div>
+          <div className="relative z-10 pt-12">
+            <CTA />
+          </div>
         </div>
         
         <Footer />
