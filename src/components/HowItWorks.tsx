@@ -32,8 +32,8 @@ const steps = [
 
 export const HowItWorks = () => {
   return (
-    <section id="how-it-works" className="py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section id="how-it-works" className="py-24 px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <Badge variant="outline" className="mb-4">How It Works</Badge>
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
@@ -47,13 +47,13 @@ export const HowItWorks = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step, index) => (
             <div key={index} className="relative">
-              <Card className="h-full hover:shadow-lg transition-shadow">
+              <Card className="h-full hover:shadow-xl transition-all duration-300 hover:scale-105 bg-white/90 backdrop-blur-sm dark:bg-gray-900/90 border-white/30 dark:border-gray-800/30">
                 <CardContent className="p-6 text-center">
                   <div className="relative mb-6">
-                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                    <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-pink-500/20 rounded-full flex items-center justify-center mx-auto">
                       <step.icon className="h-8 w-8 text-primary" />
                     </div>
-                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold">
+                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-br from-primary to-pink-500 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg">
                       {step.step}
                     </div>
                   </div>
@@ -63,7 +63,7 @@ export const HowItWorks = () => {
               </Card>
               
               {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-border"></div>
+                <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gradient-to-r from-primary/50 to-pink-500/50"></div>
               )}
             </div>
           ))}

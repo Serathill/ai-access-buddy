@@ -36,7 +36,7 @@ const testimonials = [
     name: "Lisa Wang",
     role: "Entrepreneur",
     image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=64&h=64&fit=crop&crop=face",
-    content: "The color analysis feature is incredible. I finally understand which colors make me look vibrant and confident. My style has never been better!",
+    content: "The color analysis feature is incredible. I finally understand which colors make me vibrant and confident. My style has never been better!",
     rating: 5
   },
   {
@@ -50,8 +50,8 @@ const testimonials = [
 
 export const Testimonials = () => {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <Badge variant="outline" className="mb-4">Testimonials</Badge>
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
@@ -64,7 +64,7 @@ export const Testimonials = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow">
+            <Card key={index} className="hover:shadow-xl transition-all duration-300 hover:scale-105 bg-white/90 backdrop-blur-sm dark:bg-gray-900/90 border-white/30 dark:border-gray-800/30">
               <CardContent className="p-6">
                 <div className="flex items-center mb-4">
                   <div className="flex">

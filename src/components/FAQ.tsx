@@ -44,8 +44,8 @@ const faqs = [
 
 export const FAQ = () => {
   return (
-    <section id="faq" className="py-24 px-4 sm:px-6 lg:px-8 bg-muted/30">
-      <div className="max-w-4xl mx-auto">
+    <section id="faq" className="py-24 px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-4xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <Badge variant="outline" className="mb-4">FAQ</Badge>
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
@@ -56,18 +56,20 @@ export const FAQ = () => {
           </p>
         </div>
         
-        <Accordion type="single" collapsible className="w-full">
-          {faqs.map((faq, index) => (
-            <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger className="text-left text-lg font-medium">
-                {faq.question}
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        <div className="bg-white/80 backdrop-blur-sm dark:bg-gray-900/80 rounded-2xl p-8 border border-white/20 dark:border-gray-800/20 shadow-xl">
+          <Accordion type="single" collapsible className="w-full">
+            {faqs.map((faq, index) => (
+              <AccordionItem key={index} value={`item-${index}`}>
+                <AccordionTrigger className="text-left text-lg font-medium">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
       </div>
     </section>
   );
