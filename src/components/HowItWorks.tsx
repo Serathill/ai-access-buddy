@@ -1,13 +1,13 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Upload, Brain, Shirt, Sparkles } from "lucide-react";
+import { Webcam, Brain, Shirt, Sparkles } from "lucide-react";
 
 const steps = [
   {
-    icon: Upload,
-    title: "Upload Your Photos",
-    description: "Take photos of your current wardrobe or yourself to help our AI understand your style preferences.",
+    icon: Webcam,
+    title: "Live Webcam Analysis",
+    description: "Our AI analyzes you in real-time through your webcam to understand your body type, style preferences, and current look.",
     step: "01"
   },
   {
