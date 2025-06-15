@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Star } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const startTavusConversation = async () => {
   try {
@@ -63,15 +63,6 @@ export const Hero = () => {
           </div>
           
           <div className="flex items-center justify-center gap-8 text-sm text-muted-foreground">
-            <div className="flex items-center gap-1">
-              <div className="flex">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
-              <span className="ml-2">4.9/5 from 10,000+ users</span>
-            </div>
-            <span>•</span>
             <span>Free tier available • No credit card required</span>
           </div>
         </div>

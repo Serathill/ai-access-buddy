@@ -54,7 +54,7 @@ export const CTA = () => {
             </h2>
             
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-              Join over <span className="font-semibold text-primary">50,000+ style enthusiasts</span> who've transformed their wardrobes with AI. 
+              Join our community of <span className="font-semibold text-primary">style enthusiasts</span> who've transformed their wardrobes with AI. 
               Start your journey today - completely free! ✨
             </p>
             
