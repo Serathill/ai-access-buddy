@@ -3,7 +3,6 @@ import { Hero } from "@/components/Hero";
 import { Features } from "@/components/Features";
 import { HowItWorks } from "@/components/HowItWorks";
 import { ChatDemo } from "@/components/ChatDemo";
-import { Pricing } from "@/components/Pricing";
 import { Testimonials } from "@/components/Testimonials";
 import { FAQ } from "@/components/FAQ";
 import { CTA } from "@/components/CTA";
@@ -57,16 +56,6 @@ const Index = () => {
           <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_600px_at_50%_50%,rgba(139,92,246,0.12),transparent)]"></div>
           <div className="relative z-10 pt-12">
             <ChatDemo />
-          </div>
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-rose-50/60 dark:to-rose-950/60"></div>
-        </div>
-        
-        {/* Pricing with warm rose accents */}
-        <div className="relative -mb-12">
-          <div className="absolute inset-0 bg-gradient-to-br from-rose-50/60 via-pink-50/80 to-coral-50/60 dark:from-rose-950/60 dark:via-pink-950/80 dark:to-coral-950/60"></div>
-          <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_600px_at_50%_50%,rgba(255,107,107,0.12),transparent)]"></div>
-          <div className="relative z-10 pt-12">
-            <Pricing />
           </div>
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-orange-50/80 dark:to-orange-950/80"></div>
         </div>
