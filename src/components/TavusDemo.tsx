@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Phone, PhoneOff } from 'lucide-react';
 
@@ -8,6 +7,20 @@ export const TavusDemo = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [conversationUrl, setConversationUrl] = useState<string | null>(null);
+  const [showCreateAccount, setShowCreateAccount] = useState(false);
+
+  // 4-minute timeout effect
+  useEffect(() => {
+    if (conversationUrl) {
+      const timeout = setTimeout(() => {
+        setConversationUrl(null);
+        setShowCreateAccount(true);
+      }, 240000); // 4 minutes in milliseconds
+
+      // Cleanup function to clear timeout
+      return () => clearTimeout(timeout);
+    }
+  }, [conversationUrl]);
 
   const declineCall = () => {
     setIsRinging(false);
@@ -42,6 +55,42 @@ export const TavusDemo = () => {
       setIsLoading(false);
     }
   };
+
+  const handleCallAgain = () => {
+    setIsRinging(true);
+    setShowCreateAccount(false);
+  };
+
+  // If we need to show create account screen
+  if (showCreateAccount) {
+    return (
+      <div className="relative w-full max-w-4xl mx-auto bg-white rounded-lg overflow-hidden shadow-2xl">
+        <div className="flex items-center justify-center min-h-[600px] p-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold mb-4 text-gray-900">Your demo has ended.</h2>
+            <p className="text-lg text-gray-600 mb-8 max-w-md">
+              Create an account to continue your style journey with our AI assistant.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                size="lg"
+                className="bg-primary hover:bg-primary/90"
+              >
+                Create Account
+              </Button>
+              <Button
+                onClick={handleCallAgain}
+                variant="outline"
+                size="lg"
+              >
+                Call Again
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // If we have a conversation URL, show the iframe
   if (conversationUrl) {
