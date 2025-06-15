@@ -7,14 +7,55 @@ export const TavusDemo = () => {
   const [isRinging, setIsRinging] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [conversationUrl, setConversationUrl] = useState<string | null>(null);
 
   const declineCall = () => {
     setIsRinging(false);
   };
 
-  const acceptCall = () => {
-    // Empty function for now - API logic will be added later
+  const acceptCall = async () => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch('https://api.tavus.io/v2/conversations', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': '34effabf4cfb4437bc04a87c5f33fef5'
+        },
+        body: JSON.stringify({
+          persona_id: 'p869ead8c67b'
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setConversationUrl(data.share_url);
+    } catch (err) {
+      setError('Failed to connect to the AI stylist. Please try again.');
+      console.error('Tavus API error:', err);
+    } finally {
+      setIsLoading(false);
+    }
   };
+
+  // If we have a conversation URL, show the iframe
+  if (conversationUrl) {
+    return (
+      <div className="relative w-full max-w-4xl mx-auto bg-black rounded-lg overflow-hidden shadow-2xl">
+        <iframe
+          src={conversationUrl}
+          className="w-full h-[600px] border-0"
+          allow="camera; microphone; fullscreen; display-capture; autoplay"
+          title="AI Stylist Video Call"
+        />
+      </div>
+    );
+  }
 
   if (!isRinging) {
     return (
