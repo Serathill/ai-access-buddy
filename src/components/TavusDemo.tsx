@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState, useEffect } from "react"
@@ -10,6 +9,12 @@ export const TavusDemo = ({ onClose }: { onClose: () => void }) => {
   const [error, setError] = useState<string | null>(null)
   const [conversationUrl, setConversationUrl] = useState<string | null>(null)
   const [showCreateAccount, setShowCreateAccount] = useState(false)
+
+  const handleRestart = () => {
+    setShowCreateAccount(false);
+    setConversationUrl(null);
+    setError(null);
+  };
 
   const handleAcceptCall = async () => {
     setIsLoading(true);
@@ -66,11 +71,11 @@ export const TavusDemo = ({ onClose }: { onClose: () => void }) => {
           <p className="text-lg text-white/70 mb-8">Create an account to continue your style journey.</p>
           <div className="flex gap-4 justify-center">
             <button className="bg-primary text-primary-foreground px-6 py-2 rounded-lg">Create Account</button>
-            <button onClick={() => { setShowCreateAccount(false); onClose(); }} className="bg-secondary text-secondary-foreground px-6 py-2 rounded-lg">Call Again</button>
+            <button onClick={handleRestart} className="bg-secondary text-secondary-foreground px-6 py-2 rounded-lg">Call Again</button>
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   return (
