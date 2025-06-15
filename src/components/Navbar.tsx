@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
@@ -57,7 +56,6 @@ export const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity" onClick={handleLogoClick}>
-            <img src="/lovable-uploads/2e5bdad4-2da5-46e5-b0b5-f8bcd78f9683.png" alt="StyleAI Logo" className="h-8 w-8" />
             <span className="text-xl font-bold">StyleAI</span>
           </Link>
           
