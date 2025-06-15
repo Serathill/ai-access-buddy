@@ -1,216 +1,125 @@
-import React, { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Phone, PhoneOff } from 'lucide-react';
-import { cn } from '@/lib/utils';
+
+"use client"
+
+import { useState, useEffect } from "react"
+import { Phone, PhoneOff } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 export const TavusDemo = () => {
-  const [isRinging, setIsRinging] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [conversationUrl, setConversationUrl] = useState<string | null>(null);
-  const [showCreateAccount, setShowCreateAccount] = useState(false);
+  const [isRinging, setIsRinging] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [conversationUrl, setConversationUrl] = useState<string | null>(null)
+  const [showCreateAccount, setShowCreateAccount] = useState(false)
 
-  // 4-minute timeout effect
-  useEffect(() => {
-    if (conversationUrl) {
-      const timeout = setTimeout(() => {
-        setConversationUrl(null);
-        setShowCreateAccount(true);
-      }, 240000); // 4 minutes in milliseconds
-
-      // Cleanup function to clear timeout
-      return () => clearTimeout(timeout);
-    }
-  }, [conversationUrl]);
-
-  const declineCall = () => {
-    setIsRinging(false);
-  };
-
-  const acceptCall = async () => {
-    setIsLoading(true);
-    setError(null);
-
+  const handleAcceptCall = async () => {
+    setIsLoading(true)
+    setError(null)
     try {
-      const response = await fetch('https://api.tavus.io/v2/conversations', {
-        method: 'POST',
+      const response = await fetch("https://api.tavus.io/v2/conversations", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': '34effabf4cfb4437bc04a87c5f33fef5'
+          "Content-Type": "application/json",
+          "x-api-key": "34effabf4cfb4437bc04a87c5f33fef5",
         },
-        body: JSON.stringify({
-          persona_id: 'p869ead8c67b'
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      setConversationUrl(data.share_url);
+        body: JSON.stringify({ persona_id: "p869ead8c67b" }),
+      })
+      if (!response.ok) throw new Error("Failed to start conversation.")
+      const data = await response.json()
+      setConversationUrl(data.share_url)
     } catch (err) {
-      setError('Failed to connect to the AI stylist. Please try again.');
-      console.error('Tavus API error:', err);
+      setError(err instanceof Error ? err.message : "An unknown error occurred.")
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
-  const handleCallAgain = () => {
-    setIsRinging(true);
-    setShowCreateAccount(false);
-  };
+  const handleDeclineCall = () => {
+    setIsRinging(false)
+  }
 
-  // If we need to show create account screen
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (conversationUrl) {
+      timer = setTimeout(() => {
+        setConversationUrl(null)
+        setShowCreateAccount(true)
+      }, 240000) // 4 minutes
+    }
+    return () => clearTimeout(timer)
+  }, [conversationUrl])
+
+  if (conversationUrl) {
+    return <iframe src={conversationUrl} className="fixed inset-0 z-[1000] w-full h-full border-0" />
+  }
+
   if (showCreateAccount) {
     return (
-      <div className={cn(
-        isRinging ? "fixed inset-0 z-[999] bg-black" : "hidden"
-      )}>
-        <div className="flex items-center justify-center h-full">
-          <div className="relative w-full max-w-4xl mx-auto bg-white rounded-lg overflow-hidden shadow-2xl">
-            <div className="flex items-center justify-center min-h-[600px] p-8">
-              <div className="text-center">
-                <h2 className="text-3xl font-bold mb-4 text-gray-900">Your demo has ended.</h2>
-                <p className="text-lg text-gray-600 mb-8 max-w-md">
-                  Create an account to continue your style journey with our AI assistant.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button
-                    size="lg"
-                    className="bg-primary hover:bg-primary/90"
-                  >
-                    Create Account
-                  </Button>
-                  <Button
-                    onClick={handleCallAgain}
-                    variant="outline"
-                    size="lg"
-                  >
-                    Call Again
-                  </Button>
-                </div>
-              </div>
-            </div>
+      <div className="fixed inset-0 z-[999] bg-black flex items-center justify-center text-center p-4">
+        <div>
+          <h2 className="text-3xl font-bold text-white mb-4">Your demo has ended.</h2>
+          <p className="text-lg text-white/70 mb-8">Create an account to continue your style journey.</p>
+          <div className="flex gap-4 justify-center">
+            <button className="bg-primary text-primary-foreground px-6 py-2 rounded-lg">Create Account</button>
+            <button onClick={() => { setIsRinging(true); setShowCreateAccount(false); }} className="bg-secondary text-secondary-foreground px-6 py-2 rounded-lg">Call Again</button>
           </div>
         </div>
       </div>
-    );
-  }
-
-  // If we have a conversation URL, show the iframe
-  if (conversationUrl) {
-    return (
-      <div className={cn(
-        isRinging ? "fixed inset-0 z-[999] bg-black" : "hidden"
-      )}>
-        <div className="flex items-center justify-center h-full">
-          <div className="relative w-full max-w-4xl mx-auto bg-black rounded-lg overflow-hidden shadow-2xl">
-            <iframe
-              src={conversationUrl}
-              className="w-full h-[600px] border-0"
-              allow="camera; microphone; fullscreen; display-capture; autoplay"
-              title="AI Stylist Video Call"
-            />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (!isRinging) {
-    return (
-      <div className={cn(
-        isRinging ? "fixed inset-0 z-[999] bg-black" : "hidden"
-      )}>
-        <div className="flex items-center justify-center h-full">
-          <div className="flex items-center justify-center min-h-[600px] bg-gray-100 rounded-lg">
-            <p className="text-gray-600">Call ended</p>
-          </div>
-        </div>
-      </div>
-    );
+    )
   }
 
   return (
-    <div className={cn(
-      isRinging ? "fixed inset-0 z-[999] bg-black" : "hidden"
-    )}>
-      <div className="flex items-center justify-center h-full">
-        <div className="relative w-full max-w-4xl mx-auto bg-black rounded-lg overflow-hidden shadow-2xl">
-          {/* Background with stylist avatar */}
-          <div className="relative h-[600px] flex items-center justify-center">
-            <img
-              src="/stylist-avatar.png"
-              alt="AI Stylist"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            
-            {/* Dark overlay for better text visibility */}
-            <div className="absolute inset-0 bg-black/40" />
-            
-            {/* Incoming call UI */}
-            <div className="relative z-10 text-center text-white">
-              {/* Caller info */}
-              <div className="mb-8">
-                <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-4 border-white/20">
-                  <img
-                    src="/anddrew.png"
-                    alt="Andrew"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h2 className="text-2xl font-semibold mb-2">Andrew</h2>
-                <p className="text-lg text-white/80">Incoming video call...</p>
-              </div>
+    <div className={cn("transition-opacity duration-300", isRinging ? "opacity-100" : "opacity-0 pointer-events-none")}>
+      <div className="fixed inset-0 z-[999] bg-black flex flex-col items-center justify-center text-white">
+        {/* AI Stylist Header */}
+        <div className="absolute top-8 left-8 flex items-center gap-2 text-white/50">
+          <img src="/stylist-avatar.png" alt="AI Stylist" className="w-6 h-6 rounded-full" />
+          <span>AI Stylist</span>
+        </div>
 
-              {/* Ringing animation */}
-              <div className="mb-8">
-                <div className="w-20 h-20 mx-auto border-4 border-white/30 rounded-full animate-pulse" />
-              </div>
+        {/* Ringing Animation */}
+        <div className="absolute">
+          <div className="absolute -inset-48 border border-white/10 rounded-full animate-ping"></div>
+          <div className="absolute -inset-40 border border-white/20 rounded-full animate-ping" style={{ animationDelay: "0.5s" }}></div>
+        </div>
 
-              {/* Call controls */}
-              <div className="flex justify-center space-x-8">
-                {/* Decline button */}
-                <Button
-                  onClick={declineCall}
-                  variant="destructive"
-                  size="lg"
-                  className="w-16 h-16 rounded-full p-0 bg-red-500 hover:bg-red-600"
-                  disabled={isLoading}
-                >
-                  <PhoneOff className="w-6 h-6" />
-                </Button>
+        {/* Call Info */}
+        <div className="relative text-center flex flex-col items-center">
+          <div className="w-32 h-32 rounded-full border-2 border-white/20 mb-6 flex items-center justify-center bg-black">
+            <span className="text-2xl font-medium">Andrew</span>
+          </div>
+          <h1 className="text-4xl font-bold">Andrew</h1>
+          <p className="text-white/70 mt-2">Incoming video call...</p>
+        </div>
 
-                {/* Accept button */}
-                <Button
-                  onClick={acceptCall}
-                  size="lg"
-                  className="w-16 h-16 rounded-full p-0 bg-green-500 hover:bg-green-600"
-                  disabled={isLoading}
-                >
-                  <Phone className="w-6 h-6" />
-                </Button>
-              </div>
-
-              {/* Loading state */}
-              {isLoading && (
-                <div className="mt-4">
-                  <p className="text-white/80">Connecting...</p>
-                </div>
-              )}
-
-              {/* Error state */}
-              {error && (
-                <div className="mt-4">
-                  <p className="text-red-400">{error}</p>
-                </div>
-              )}
-            </div>
+        {/* Action Buttons */}
+        <div className="absolute bottom-24 flex items-center justify-center gap-16">
+          <div className="text-center">
+            <button
+              onClick={handleDeclineCall}
+              disabled={isLoading}
+              className="w-16 h-16 rounded-full bg-red-500 hover:bg-red-600 flex items-center justify-center transition-all disabled:opacity-50"
+              aria-label="Decline call"
+            >
+              <PhoneOff className="w-7 h-7" />
+            </button>
+            <span className="mt-2 block text-sm">Decline</span>
+          </div>
+          <div className="text-center">
+            <button
+              onClick={handleAcceptCall}
+              disabled={isLoading}
+              className="w-16 h-16 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center transition-all disabled:opacity-50"
+              aria-label="Accept call"
+            >
+              {isLoading ? <div className="w-6 h-6 border-2 border-white/50 border-t-white rounded-full animate-spin"></div> : <Phone className="w-7 h-7" />}
+            </button>
+            <span className="mt-2 block text-sm">Accept</span>
           </div>
         </div>
       </div>
     </div>
   );
 };
+
+export default TavusDemo;
