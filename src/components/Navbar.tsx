@@ -33,7 +33,6 @@ export const Navbar = () => {
             <a href="#how-it-works" className="text-foreground/80 hover:text-foreground transition-colors" onClick={(e) => handleNavClick(e, 'how-it-works')}>How it Works</a>
             <a href="#pricing" className="text-foreground/80 hover:text-foreground transition-colors" onClick={(e) => handleNavClick(e, 'pricing')}>Pricing</a>
             <a href="#faq" className="text-foreground/80 hover:text-foreground transition-colors" onClick={(e) => handleNavClick(e, 'faq')}>FAQ</a>
-            <Button variant="outline" size="sm">Sign In</Button>
             <Button size="sm">Get Started</Button>
           </div>
 
@@ -55,7 +54,6 @@ export const Navbar = () => {
             <a href="#pricing" className="block text-foreground/80 hover:text-foreground transition-colors" onClick={(e) => handleNavClick(e, 'pricing')}>Pricing</a>
             <a href="#faq" className="block text-foreground/80 hover:text-foreground transition-colors" onClick={(e) => handleNavClick(e, 'faq')}>FAQ</a>
             <div className="flex flex-col space-y-2 pt-4">
-              <Button variant="outline" size="sm">Sign In</Button>
               <Button size="sm">Get Started</Button>
             </div>
           </div>
