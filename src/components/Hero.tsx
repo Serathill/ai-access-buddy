@@ -1,14 +1,15 @@
+
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Play, Star } from "lucide-react";
 import { TavusDemo } from "./TavusDemo";
 
 export const Hero = () => {
+  const [isDemoActive, setDemoActive] = useState(false);
+
   const handleWatchDemo = () => {
-    const demoSection = document.getElementById('demo-section');
-    if (demoSection) {
-      demoSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    setDemoActive(true);
   };
 
   return (
@@ -53,14 +54,9 @@ export const Hero = () => {
             <span>Free tier available • No credit card required</span>
           </div>
         </div>
-        
-        <div id="demo-section" className="mt-16 relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-pink-500/20 to-purple-600/20 rounded-3xl blur-3xl"></div>
-          <div className="relative bg-card rounded-3xl p-8 border shadow-2xl">
-            <TavusDemo />
-          </div>
-        </div>
       </div>
+      
+      {isDemoActive && <TavusDemo />}
     </section>
   );
 };
