@@ -19,7 +19,7 @@ const features = [
   {
     icon: Camera,
     title: "Virtual Try-On",
-    description: "See how outfits look on you with our advanced AR technology before making purchases.",
+    description: "See how outfits look on you with our advanced AR technology before making purchases. (In Development)",
     badge: "New"
   },
   {
