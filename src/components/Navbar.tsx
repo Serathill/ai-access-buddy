@@ -4,6 +4,39 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 
+const startTavusConversation = async () => {
+  try {
+    const response = await fetch('https://tavusapi.com/v2/conversations', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': '34effabf4cfb4437bc04a87c5f33fef5'
+      },
+      body: JSON.stringify({
+        replica_id: "",
+        persona_id: "p869ead8c67b",
+        custom_greeting: "Hello! I am Andrew, your personal AI-Stylist!",
+        properties: {
+          max_call_duration: 180,
+          participant_left_timeout: 1,
+          participant_absent_timeout: 30,
+          enable_recording: false,
+          enable_closed_captions: true
+        }
+      })
+    });
+    
+    const data = await response.json();
+    console.log('Tavus conversation started:', data);
+    
+    if (data.conversation_url) {
+      window.open(data.conversation_url, '_blank');
+    }
+  } catch (error) {
+    console.error('Error starting Tavus conversation:', error);
+  }
+};
+
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -33,7 +66,7 @@ export const Navbar = () => {
             <a href="#how-it-works" className="text-foreground/80 hover:text-foreground transition-colors" onClick={(e) => handleNavClick(e, 'how-it-works')}>How it Works</a>
             <a href="#pricing" className="text-foreground/80 hover:text-foreground transition-colors" onClick={(e) => handleNavClick(e, 'pricing')}>Pricing</a>
             <a href="#faq" className="text-foreground/80 hover:text-foreground transition-colors" onClick={(e) => handleNavClick(e, 'faq')}>FAQ</a>
-            <Button size="sm">Get Started</Button>
+            <Button size="sm" onClick={startTavusConversation}>Get Started</Button>
           </div>
 
           <div className="md:hidden">
@@ -54,7 +87,7 @@ export const Navbar = () => {
             <a href="#pricing" className="block text-foreground/80 hover:text-foreground transition-colors" onClick={(e) => handleNavClick(e, 'pricing')}>Pricing</a>
             <a href="#faq" className="block text-foreground/80 hover:text-foreground transition-colors" onClick={(e) => handleNavClick(e, 'faq')}>FAQ</a>
             <div className="flex flex-col space-y-2 pt-4">
-              <Button size="sm">Get Started</Button>
+              <Button size="sm" onClick={startTavusConversation}>Get Started</Button>
             </div>
           </div>
         )}

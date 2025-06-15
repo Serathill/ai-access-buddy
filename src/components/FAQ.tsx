@@ -17,10 +17,6 @@ const faqs = [
     answer: "Absolutely! StyleAI is designed for everyone, regardless of fashion experience. Our AI guides you through the process step-by-step, explaining why certain combinations work and helping you build confidence in your style choices."
   },
   {
-    question: "How does the virtual try-on feature work?",
-    answer: "Our AR technology uses your uploaded photos to create a virtual representation of how clothes will look on you. Simply upload a full-body photo, and our AI will map clothing items to your body type and proportions."
-  },
-  {
     question: "Is my personal data and photos secure?",
     answer: "Yes, we take privacy seriously. All photos and personal data are encrypted and stored securely. We never share your information with third parties, and you can delete your data at any time."
   },
@@ -35,10 +31,6 @@ const faqs = [
   {
     question: "Do you offer styling for special occasions?",
     answer: "Yes! StyleAI can create outfit recommendations for any occasion - from casual daily wear to formal events, job interviews, dates, and seasonal celebrations. Just specify the occasion and dress code."
-  },
-  {
-    question: "Can I collaborate with personal stylists through the platform?",
-    answer: "Our Style Studio plan includes access to human stylists who can review your AI recommendations and provide additional personalized advice. It's the perfect blend of AI efficiency and human expertise."
   }
 ];
 

@@ -7,7 +7,7 @@ const testimonials = [
   {
     name: "Sarah Chen",
     role: "Marketing Manager",
-    image: "https://images.unsplash.com/photo-1494790108755-2616b9214b51?w=64&h=64&fit=crop&crop=face",
+    image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=64&h=64&fit=crop&crop=face",
     content: "StyleAI completely transformed my wardrobe confidence. The AI recommendations are spot-on and helped me discover styles I never thought would work for me.",
     rating: 5
   },
@@ -22,7 +22,7 @@ const testimonials = [
     name: "Emma Thompson",
     role: "Fashion Blogger",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=64&h=64&fit=crop&crop=face",
-    content: "The virtual try-on feature saved me so much time and money. I can experiment with different looks before committing to purchases.",
+    content: "The smart color matching feature saved me so much time and money. I can now create perfect color combinations that complement my skin tone effortlessly.",
     rating: 5
   },
   {

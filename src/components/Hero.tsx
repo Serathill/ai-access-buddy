@@ -3,6 +3,39 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Star } from "lucide-react";
 
+const startTavusConversation = async () => {
+  try {
+    const response = await fetch('https://tavusapi.com/v2/conversations', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': '34effabf4cfb4437bc04a87c5f33fef5'
+      },
+      body: JSON.stringify({
+        replica_id: "",
+        persona_id: "p869ead8c67b",
+        custom_greeting: "Hello! I am Andrew, your personal AI-Stylist!",
+        properties: {
+          max_call_duration: 180,
+          participant_left_timeout: 1,
+          participant_absent_timeout: 30,
+          enable_recording: false,
+          enable_closed_captions: true
+        }
+      })
+    });
+    
+    const data = await response.json();
+    console.log('Tavus conversation started:', data);
+    
+    if (data.conversation_url) {
+      window.open(data.conversation_url, '_blank');
+    }
+  } catch (error) {
+    console.error('Error starting Tavus conversation:', error);
+  }
+};
+
 export const Hero = () => {
   return (
     <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
@@ -23,7 +56,7 @@ export const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <Button size="lg" className="text-lg px-8 py-3">
+            <Button size="lg" className="text-lg px-8 py-3" onClick={startTavusConversation}>
               Start Your Style Journey
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
