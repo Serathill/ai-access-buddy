@@ -1,16 +1,9 @@
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Play, Star } from "lucide-react";
+import { ArrowRight, Star } from "lucide-react";
 
 export const Hero = () => {
-  const handleWatchDemo = () => {
-    const demoSection = document.getElementById('demo-section');
-    if (demoSection) {
-      demoSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -34,10 +27,6 @@ export const Hero = () => {
               Start Your Style Journey
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-3" onClick={handleWatchDemo}>
-              <Play className="mr-2 h-5 w-5" />
-              Watch Demo
-            </Button>
           </div>
           
           <div className="flex items-center justify-center gap-8 text-sm text-muted-foreground">
@@ -60,7 +49,7 @@ export const Hero = () => {
             <div className="aspect-video bg-gradient-to-br from-primary/10 via-pink-500/10 to-purple-600/10 rounded-2xl flex items-center justify-center">
               <div className="text-center">
                 <div className="w-20 h-20 bg-gradient-to-br from-primary/30 to-pink-500/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Play className="h-8 w-8 text-primary" />
+                  <ArrowRight className="h-8 w-8 text-primary" />
                 </div>
                 <p className="text-lg font-medium">Interactive Style Demo</p>
                 <p className="text-muted-foreground">See how AI transforms your wardrobe</p>
