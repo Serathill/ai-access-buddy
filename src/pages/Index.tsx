@@ -1,5 +1,6 @@
 
 import { Hero } from "@/components/Hero";
+import { Overview } from "@/components/Overview";
 import { Features } from "@/components/Features";
 import { HowItWorks } from "@/components/HowItWorks";
 import { ChatDemo } from "@/components/ChatDemo";
@@ -28,6 +29,15 @@ const Index = () => {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_800px_600px_at_50%_-20%,rgba(255,107,107,0.15),transparent)]"></div>
           <div className="relative z-10">
             <Hero />
+          </div>
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-orange-50/80 dark:to-orange-950/80"></div>
+        </div>
+        
+        {/* Overview section with elegant transition */}
+        <div className="relative -mb-12">
+          <div className="absolute inset-0 bg-gradient-to-br from-orange-50/80 via-white/90 to-pink-50/80 dark:from-orange-950/80 dark:via-slate-900/90 dark:to-pink-950/80"></div>
+          <div className="relative z-10 pt-12">
+            <Overview />
           </div>
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-orange-50/80 dark:to-orange-950/80"></div>
         </div>
