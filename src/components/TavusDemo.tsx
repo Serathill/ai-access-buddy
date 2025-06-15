@@ -12,8 +12,8 @@ export const TavusDemo = ({ onClose }: { onClose: () => void }) => {
   const [showCreateAccount, setShowCreateAccount] = useState(false)
 
   const handleAcceptCall = async () => {
-    setIsLoading(true)
-    setError(null)
+    setIsLoading(true);
+    setError(null);
     try {
       const response = await fetch("https://api.tavus.io/v2/conversations", {
         method: "POST",
@@ -22,16 +22,22 @@ export const TavusDemo = ({ onClose }: { onClose: () => void }) => {
           "x-api-key": "34effabf4cfb4437bc04a87c5f33fef5",
         },
         body: JSON.stringify({ persona_id: "p869ead8c67b" }),
-      })
-      if (!response.ok) throw new Error("Failed to start conversation.")
-      const data = await response.json()
-      setConversationUrl(data.share_url)
+      });
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ message: "An unknown API error occurred." }));
+        throw new Error(errorData.message || "Failed to start conversation.");
+      }
+      const data = await response.json();
+      setConversationUrl(data.share_url);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "An unknown error occurred.")
+      const errorMessage = err instanceof Error ? err.message : "An unknown network error occurred.";
+      setError(errorMessage);
+      // Close the demo after showing the error for a few seconds
+      setTimeout(() => onClose(), 3000);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   const handleDeclineCall = () => {
     onClose();
@@ -88,6 +94,9 @@ export const TavusDemo = ({ onClose }: { onClose: () => void }) => {
         </div>
         <h1 className="text-4xl font-bold">Andrew</h1>
         <p className="text-white/70 mt-2">Incoming video call...</p>
+        {error && (
+          <p className="text-red-400 mt-4 text-sm">{error}</p>
+        )}
       </div>
 
       {/* Action Buttons */}
